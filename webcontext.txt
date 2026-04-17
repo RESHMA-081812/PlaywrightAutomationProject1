@@ -1,0 +1,92 @@
+PROJECT NAME:
+Enterprise Playwright Automation Framework – Automation Exercise
+
+APPLICATION UNDER TEST:
+https://automationexercise.com
+
+TARGET BROWSER:
+Microsoft Edge (Chromium only)
+
+EXECUTION STRATEGY:
+- Website opens ONLY ONCE
+- Single browser, single context, single page
+- All test scenarios run sequentially
+- Browser closes ONLY after all scenarios complete
+
+PAGES COVERED:
+- Home Page
+- Products Page
+- Product Details Page
+- Cart Page
+- Signup/Login Page
+- Checkout Page
+- Order Confirmation Page
+- Header and Footer navigation
+
+TEST TYPES:
+- Smoke tests
+- End-to-end tests
+- Navigation validation
+- Cart and checkout validation
+
+AUTOMATION RULES:
+- Playwright with TypeScript
+- Page Object Model
+- Serialized execution
+- Explicit navigation (no assumptions)
+- No hard waits
+- Production-quality selectors
+
+ARTIFACT REQUIREMENTS:
+- Full video recording of test execution
+- Success screenshots saved to successScreenshots folder
+- Failure screenshots saved to failureScreenshots folder
+- Trace saved on failure
+
+QUALITY GOALS:
+- Stable execution
+- Demo-ready visuals
+- Interview-ready project
+- Enterprise-aligned best practices
+
+AUTOMATION SCOPE EXPANSION:
+The framework must support API testing and API + UI hybrid testing using Playwright's built-in request context.
+
+API AUTOMATION REQUIREMENTS:
+- Use Playwright APIRequestContext
+- No external API libraries
+- API tests must run without opening a browser
+- API tests must validate backend behavior only
+
+API + UI HYBRID REQUIREMENTS:
+- API tests must be used for test data setup (e.g., create user, prepare cart)
+- UI tests must validate business behavior using the data created via API
+- Hybrid tests must avoid redundant UI steps like signup where API is sufficient
+
+TEST ORGANIZATION:
+- UI tests under tests/ui/
+- API tests under tests/api/
+- Hybrid tests under tests/hybrid/
+
+TEST TAGGING:
+- @api for API tests
+- @ui for UI tests
+- @hybrid for combined tests
+- @smoke and @regression must continue to work
+
+CONFIGURATION:
+- Use the same playwright.config.ts
+- No separate configuration files
+
+
+API VALIDATION REQUIREMENTS:
+All API tests must validate:
+- HTTP status code
+- Response time (performance SLA)
+- Response payload size
+- Response headers (Content-Type, Cache-Control)
+- Response body (JSON/XML schema and fields)
+- Cookies if present (session or auth)
+
+The Playwright request context must be used.
+No external API libraries are allowed.
