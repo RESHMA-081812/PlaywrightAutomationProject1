@@ -1,12 +1,11 @@
 import { defineConfig } from '@playwright/test';
 
+const isCI = !!process.env.CI;
+
 export default defineConfig({
   testDir: './tests',
 
   timeout: 120000,
-
-  outputDir: 'videos',
-
   workers: 1,
   fullyParallel: false,
 
@@ -16,38 +15,30 @@ export default defineConfig({
   ],
 
   use: {
-    // ✅ Microsoft Edge only
+    // ✅ Always use Chromium in CI
     browserName: 'chromium',
-    channel: 'msedge',
 
-    headless: false,
+    // ✅ Headless in CI, headed locally
+    headless: isCI,
 
     baseURL: 'https://automationexercise.com',
 
-    // ✅ Full execution video
-    video: {
-      mode: 'on'
-    },
-
-    // ✅ Screenshots handled manually
+    video: isCI ? 'off' : 'on',
     screenshot: 'off',
-
-    // ✅ Trace for debugging
     trace: 'retain-on-failure',
 
     viewport: { width: 1280, height: 800 },
-
     actionTimeout: 15000,
     navigationTimeout: 30000,
-
-    launchOptions: {
-      slowMo: 300
-    }
   },
 
   projects: [
     {
-      name: 'Microsoft Edge - AutomationExercise E2E'
-    }
-  ]
+      // ✅ Clean project naming
+      name: isCI ? 'Chromium CI' : 'Microsoft Edge Local',
+      use: isCI
+        ? { browserName: 'chromium' }
+        : { browserName: 'chromium', channel: 'msedge' },
+    },
+  ],
 });
