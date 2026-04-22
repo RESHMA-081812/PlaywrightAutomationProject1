@@ -84,7 +84,13 @@ export default class SignupLoginPage {
 
   async continueAfterSignup(): Promise<void> {
     await expect(this.continueButton).toBeVisible();
-    await this.continueButton.click();
+    
+// ✅ Do NOT wait for navigation that may never complete
+  await this.continueButton.click({ force: true, noWaitAfter: true });
+
+  // ✅ Explicitly wait for page readiness instead
+  await this.page.waitForLoadState('domcontentloaded');
+
   }
 
   // ✅ Login flow (THIS FIXES THE RED LINE)
