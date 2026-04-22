@@ -25,7 +25,8 @@ export class ProductsPage {
 
   async searchProduct(productName: string): Promise<void> {
     await this.searchInput.fill(productName);
-    await this.searchButton.click();
+    await this.searchButton.click({ force: true });
+
   }
 
   async getProductCount(): Promise<number> {
