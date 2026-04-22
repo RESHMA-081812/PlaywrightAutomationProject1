@@ -9,6 +9,7 @@ import { OrderConfirmationPage } from '../pages/OrderConfirmationPage';
 import { NavigationPage } from '../pages/NavigationPage';
 import * as fs from 'fs';
 import * as path from 'path';
+test.describe.configure({ retries: 1 });
 
 
 // Shared instances across tests
@@ -44,6 +45,18 @@ test.describe.serial('Automation Exercise E2E Test Suite', () => {
 
   test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
+    
+    
+ // ✅ HIDE ADS (CORRECT PLACE)
+    await page.addStyleTag({
+      content: `
+        iframe,
+        ins.adsbygoogle {
+          display: none !important;
+        }
+      `
+    });
+
 
     homePage = new HomePage(page);
     productsPage = new ProductsPage(page);
@@ -160,4 +173,8 @@ test.describe.serial('Automation Exercise E2E Test Suite', () => {
     await cartPage.verifyCartPageLoaded();
   });
 
+});
+
+test.afterAll(async () => {
+  await page.close();
 });
