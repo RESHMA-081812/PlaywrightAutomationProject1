@@ -36,17 +36,19 @@ export class ProductsPage {
   /**
    * ✅ Best-practice: Click "View Product" explicitly
    */
-  async clickProductByIndex(index: number): Promise<void> {
-    const productCard = this.productsList.nth(index);
+  
 
-    const viewProductLink = productCard.locator('a[href^="/product_details"]');
-    await expect(viewProductLink).toBeVisible();
+async clickProductByIndex(index: number): Promise<void> {
+  const productCard = this.productsList.nth(index);
+  const viewProductLink = productCard.locator('a[href^="/product_details"]');
 
-    await viewProductLink.click();
-  }
+  await expect(viewProductLink).toBeVisible();
+
+  // ✅ Most stable approach
+  await viewProductLink.click({ force: true });
+}
 
   async getProductNames(): Promise<string[]> {
     return this.productNames.allTextContents();
   }
 }
-``
