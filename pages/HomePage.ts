@@ -37,7 +37,7 @@ export class HomePage {
 
   // ✅ Best way to verify Home page load
   async verifyHomePageLoaded(): Promise<void> {
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('domcontentloaded');
 
     await expect(this.header).toBeVisible();
     await expect(this.logo).toBeVisible();

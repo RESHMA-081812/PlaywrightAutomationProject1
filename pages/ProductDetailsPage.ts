@@ -33,10 +33,15 @@ export class ProductDetailsPage {
   }
 
   async addToCart(): Promise<void> {
-    await this.addToCartButton.click();
-  }
+  // ✅ CI-safe
+  await this.addToCartButton.scrollIntoViewIfNeeded();
+  await this.addToCartButton.click({ force: true });
+}
 
-  async viewCart(): Promise<void> {
-    await this.viewCartLink.click();
-  }
+async viewCart(): Promise<void> {
+  // ✅ CI-safe
+  await this.viewCartLink.scrollIntoViewIfNeeded();
+  await this.viewCartLink.click({ force: true });
+}
+
 }
