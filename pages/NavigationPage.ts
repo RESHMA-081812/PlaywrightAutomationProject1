@@ -24,19 +24,22 @@ export class NavigationPage {
   }
 
   async goToHome(): Promise<void> {
-    await this.homeLink.click();
+    await this.homeLink.scrollIntoViewIfNeeded();
+    await this.homeLink.click({ force: true });
   }
 
   async goToProducts(): Promise<void> {
-    await this.productsLink.click();
+    await this.productsLink.scrollIntoViewIfNeeded();
+    await this.productsLink.click({ force: true });
   }
 
   async goToCart(): Promise<void> {
-    await this.cartLink.click();
+    await this.cartLink.scrollIntoViewIfNeeded();
+    await this.cartLink.click({ force: true });
   }
 
   async goToSignupLogin(): Promise<void> {
-    await this.signupLoginLink.click();
+    await this.signupLoginLink.scrollIntoViewIfNeeded();
+    await this.signupLoginLink.click({ force: true });
   }
 }
-``
